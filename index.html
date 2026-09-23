@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="zh-Hant">
+<html data-reading="hiragana" lang="zh-Hant">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -2543,7 +2543,7 @@
     .sugar-reading{
       display: block;
       font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
-      font-size: clamp(21px, 1.7vw, 27px);
+      font-size: clamp(17px, 1.35vw, 21px);
       line-height: 1.15;
       letter-spacing: .08em;
     }
@@ -2612,14 +2612,442 @@
       color: #777 !important;
       text-transform: none !important;
     }
+
+
+    /* v35: switchable reading layers + quieter interactive legend */
+    .head{
+      align-items: flex-start;
+    }
+
+    .head-tools{
+      margin-left: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      min-width: max-content;
+    }
+
+    .reading-control{
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding-bottom: 10px;
+      font: 11px/1.2 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      letter-spacing: .045em;
+      text-transform: lowercase;
+      user-select: none;
+    }
+
+    .reading-control button{
+      position: relative;
+      appearance: none;
+      border: 0;
+      padding: 3px 0 6px;
+      margin: 0;
+      background: transparent;
+      color: #aaa;
+      font: inherit;
+      letter-spacing: inherit;
+      cursor: pointer;
+      transition: color .2s ease;
+    }
+
+    .reading-control button:hover{
+      color: #555;
+    }
+
+    .reading-control button[aria-pressed="true"]{
+      color: #111;
+    }
+
+    .reading-bead{
+      position: absolute;
+      left: 0;
+      bottom: 2px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #111;
+      pointer-events: none;
+      transform: translateX(0);
+      transition: transform .28s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .control-sep{
+      color: #d0d0d0;
+      transform: translateY(-1px);
+    }
+
+    .legend-hint{
+      text-align: right;
+      color: #999;
+      font: 11px/1.35 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .legend-hint summary{
+      list-style: none;
+      cursor: pointer;
+      letter-spacing: .02em;
+    }
+
+    .legend-hint summary::-webkit-details-marker{
+      display: none;
+    }
+
+    .legend-hint summary strong{
+      color: #777;
+      font-weight: 650;
+    }
+
+    .legend-hint summary span{
+      margin-left: .35em;
+      color: #bbb;
+      font-weight: 400;
+    }
+
+    .legend-hint[open] summary,
+    .legend-hint summary:hover{
+      color: #666;
+    }
+
+    .legend-inside{
+      margin-top: 8px;
+      max-width: 430px;
+      white-space: normal;
+      color: #8a8a8a;
+    }
+
+    .legend-note{
+      margin-top: 6px;
+      color: #aaa;
+      font-size: 10px;
+      line-height: 1.35;
+    }
+
+    .legend-readmore{
+      color: #999;
+      text-decoration: none;
+      border-bottom: 1px solid #d8d8d8;
+      transition: color .18s ease, border-color .18s ease;
+    }
+
+    .legend-readmore:hover{
+      color: #111;
+      border-bottom-color: #111;
+    }
+
+    .reading-stack{
+      position: relative;
+      width: 100%;
+      height: 1.35em;
+      display: grid;
+      place-items: center;
+      overflow: visible;
+    }
+
+    .reading-layer{
+      grid-area: 1 / 1;
+      opacity: 0;
+      pointer-events: none;
+      white-space: nowrap;
+      transition: opacity .22s ease;
+      color: #555;
+    }
+
+    html[data-reading="pinyin"] .reading-pinyin,
+    html[data-reading="hiragana"] .reading-hiragana,
+    html[data-reading="cantonese"] .reading-cantonese{
+      opacity: 1;
+    }
+
+    .reading-pinyin,
+    .reading-cantonese{
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      font-size: clamp(12px, .95vw, 17px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: .01em;
+    }
+
+    .tone-number{
+      margin-left: .03em;
+      color: #8c8c8c;
+      font-size: .68em;
+      vertical-align: .34em;
+      font-weight: 500;
+    }
+
+    .yokan-quote{
+      max-width: 760px;
+      margin: 18px 0 22px;
+      padding: 2px 0 3px 18px;
+      border-left: 2px solid #d3d3d3;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .yokan-quote-title{
+      font-family: "Songti TC", "Songti SC", "Noto Serif CJK TC", "PMingLiU", Georgia, serif;
+      font-size: clamp(19px, 1.45vw, 24px);
+      line-height: 1.35;
+    }
+
+    .yokan-quote-title span{
+      margin-left: .2em;
+      color: #777;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: .72em;
+    }
+
+    .yokan-quote-gloss{
+      margin-top: 3px;
+      font-size: clamp(15px, 1.05vw, 17px);
+      line-height: 1.5;
+    }
+
+    .yokan-quote-note{
+      margin-top: 2px;
+      color: #777;
+      font-size: clamp(13px, .95vw, 15px);
+      line-height: 1.5;
+    }
+
+    .closing-pinyin{
+      margin-bottom: 8px;
+      color: #777;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(16px, 1.25vw, 20px);
+      letter-spacing: .01em;
+    }
+
+    @media (max-width: 820px){
+      .head-tools{
+        margin-left: 0;
+        align-items: flex-start;
+        min-width: 0;
+        width: 100%;
+      }
+
+      .legend-hint{
+        text-align: left;
+      }
+
+      .reading-pinyin,
+      .reading-cantonese{
+        font-size: clamp(11px, 3.5vw, 15px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .reading-layer,
+      .reading-control button,
+      .reading-bead{
+        transition: none;
+      }
+    }
+
+
+    /* v36: smaller selector bead, roman Yokan text, and final Cantonese note */
+    .japanese-story em,
+    .japanese-story .yokan-quote,
+    .japanese-story .yokan-joke,
+    .japanese-story .yokan-punchline{
+      font-style: normal !important;
+    }
+
+    .cantonese-disclaimer{
+      margin: 6px auto 0;
+      text-align: center;
+      color: #999;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(11px, .82vw, 13px);
+      line-height: 1.4;
+    }
+
+
+    /* v37: compact references + tightly paired final disclaimer */
+    .academic-sources{
+      padding-bottom: 8px !important;
+    }
+
+    .closing-yokan{
+      margin-top: clamp(42px, 6vh, 70px) !important;
+    }
+
+    .final-punchline{
+      margin-bottom: 3px !important;
+    }
+
+    .cantonese-disclaimer{
+      margin: 0 auto !important;
+    }
+
+    .page{
+      padding-bottom: 28px;
+    }
+
+
+
+    /* v39: quieter external term link */
+    .term-link{
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid #d6d6d6;
+    }
+
+    .term-link:hover{
+      border-bottom-color: #777;
+    }
+
+    /* v38: dictionary cross-links + footer + restore v2 yokan quote */
+    .yokan-quote-gloss em{
+      font-style: italic !important;
+    }
+
+    .dictionary-marked{
+      position: relative;
+      scroll-margin-top: 28px;
+    }
+
+    .dictionary-star{
+      position: absolute;
+      top: -10px;
+      right: clamp(3px, .45vw, 8px);
+      z-index: 4;
+      color: #aaa;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 9px;
+      line-height: 1;
+      text-decoration: none;
+      font-weight: 400;
+      transition: color .18s ease, transform .18s ease;
+    }
+
+    .dictionary-star:hover{
+      color: #111;
+      transform: translateY(-1px);
+    }
+
+    .dict-wall-link{
+      color: #777;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .dict-wall-link:hover{
+      color: #111;
+      border-bottom-color: #111;
+    }
+
+    .dict-star-link{
+      margin-left: 2px;
+      color: #aaa !important;
+      border-bottom: 0 !important;
+      font-size: .7em !important;
+      vertical-align: .38em;
+      text-decoration: none !important;
+    }
+
+    .dict-star-link:hover{
+      color: #111 !important;
+    }
+
+    .site-footer{
+      margin: 34px auto 0;
+      padding: 18px 0 2px;
+      text-align: center;
+      color: #888;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(11px, .82vw, 13px);
+      line-height: 1.55;
+    }
+
+    .site-footer a{
+      color: #777;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .site-footer a:hover{
+      color: #111;
+      border-bottom-color: #111;
+    }
+
+    @media (max-width: 820px){
+      .dictionary-star{
+        top: -8px;
+        right: 1px;
+        font-size: 8px;
+      }
+
+      .site-footer{
+        margin-top: 28px;
+      }
+    }
+
+
+    /* v40: final footer + ginkgo reading treatment */
+    .ginkgo-special-green{
+      color: #111 !important;
+      font-weight: 700 !important;
+    }
+
+    .site-footer{
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 34px 0 -28px !important;
+      padding: 34px clamp(22px, 4vw, 70px) 36px !important;
+      background: #111;
+      color: #f5f5f5;
+    }
+
+    .site-footer a{
+      color: #f5f5f5;
+      border-bottom-color: #666;
+    }
+
+    .site-footer a:hover{
+      color: #fff;
+      border-bottom-color: #fff;
+    }
+
+    @media (max-width: 820px){
+      .site-footer{
+        margin-top: 28px !important;
+        margin-bottom: -32px !important;
+        padding: 18px 15px 20px !important;
+      }
+    }
+
 </style>
 </head>
 <body>
 <main class="page"><p class="opener">也许你也喜欢吃羊羹嘛？</p>
 <div class="head">
 <h1 class="title">Sino-Xenic Coda Specimens</h1>
-<p class="legend"><span class="nasal-n">ㄴ / ん</span> <span class="nasal-ng">ㅇ / い・う</span> <span class="nasal-m">ㅁ / ん</span></p>
-</div><section class="intro">
+
+<div class="head-tools">
+<div aria-label="Reading layer" class="reading-control" role="group">
+<button aria-pressed="false" data-reading="pinyin" type="button">pinyin</button>
+<span aria-hidden="true" class="control-sep">|</span>
+<button aria-pressed="true" data-reading="hiragana" type="button">hiragana</button>
+<span aria-hidden="true" class="control-sep">|</span>
+<button aria-pressed="false" data-reading="cantonese" type="button">jyutping</button>
+<span aria-hidden="true" class="reading-bead"></span>
+</div>
+<details class="legend-hint">
+<summary><strong>are you confused?</strong><span>press for hint</span></summary>
+<div class="legend legend-inside">
+<span class="nasal-n">-n</span> old -n  · 
+      <span class="nasal-ng">-ŋ</span> old -ŋ  · 
+      <span class="nasal-m">-m</span> old -m
+      <div class="legend-note"><a class="legend-readmore" href="#small-guide">read more</a></div>
+</div>
+</details>
+</div></div><section class="intro">
 <p class="intro-poem-line"><em>These codas traveled far.</em></p>
 <p class="intro-poem-line">Some survived. Some melted. Some ended up in desserts.</p>
 <p class="intro-poem-line">Korean and Cantonese kept the receipts.</p>
@@ -2629,360 +3057,519 @@
 </section>
 <section class="wall">
 <div aria-label="銀行" class="word">
-<div class="char">
-<div class="ja">ぎ<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">yí<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">ぎ<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">nga<span class="nasal-n">n</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">銀</div>
 <div class="ko">ㅇㅡ<span class="nasal-n">ㄴ</span></div>
 </div>
-<div class="char">
-<div class="ja">こ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">há<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">こ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ho<span class="nasal-ng">ng</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">行</div>
 <div class="ko">ㅎㅐ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="健康" class="word">
-<div class="char">
-<div class="ja">け<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">jià<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">け<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">gi<span class="nasal-n">n</span><span class="tone-number">6</span></div></div>
+
 <div class="hanzi">健</div>
 <div class="ko">ㄱㅓ<span class="nasal-n">ㄴ</span></div>
 </div>
-<div class="char">
-<div class="ja">こ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">kā<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">こ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ho<span class="nasal-ng">ng</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">康</div>
 <div class="ko">ㄱㅏ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="觀光" class="word">
-<div class="char">
-<div class="ja">か<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">guā<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">か<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">gu<span class="nasal-n">n</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">觀</div>
 <div class="ko">ㄱㅗㅏ<span class="nasal-n">ㄴ</span></div>
 </div>
-<div class="char">
-<div class="ja">こ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">guā<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">こ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">gwo<span class="nasal-ng">ng</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">光</div>
 <div class="ko">ㄱㅗㅏ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="緊張" class="word">
-<div class="char">
-<div class="ja">き<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">jǐ<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">き<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ga<span class="nasal-n">n</span><span class="tone-number">2</span></div></div>
+
 <div class="hanzi">緊</div>
 <div class="ko">ㄱㅣ<span class="nasal-n">ㄴ</span></div>
 </div>
-<div class="char">
-<div class="ja">ちょ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">zhā<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">ちょ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">zoe<span class="nasal-ng">ng</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">張</div>
 <div class="ko">ㅈㅏ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
-<div aria-label="現場" class="word">
-<div class="char">
-<div class="ja">げ<span class="nasal-n">ん</span></div>
+<div aria-label="現狀" class="word">
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">xià<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">げ<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ji<span class="nasal-n">n</span><span class="tone-number">6</span></div></div>
+
 <div class="hanzi">現</div>
 <div class="ko">ㅎㅕ<span class="nasal-n">ㄴ</span></div>
 </div>
-<div class="char">
-<div class="ja">じょ<span class="nasal-ng">う</span></div>
-<div class="hanzi">場</div>
-<div class="ko">ㅈㅏ<span class="nasal-ng">ㅇ</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">zhuà<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">じょ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">zo<span class="nasal-ng">ng</span><span class="tone-number">6</span></div></div>
+
+<div class="hanzi">狀</div>
+<div class="ko">ㅅㅏ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="文章" class="word">
-<div class="char">
-<div class="ja">ぶ<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">wé<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">ぶ<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ma<span class="nasal-n">n</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">文</div>
 <div class="ko">ㅁㅜ<span class="nasal-n">ㄴ</span></div>
 </div>
-<div class="char">
-<div class="ja">しょ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">zhā<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">しょ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">zoe<span class="nasal-ng">ng</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">章</div>
 <div class="ko">ㅈㅏ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="印象" class="word">
-<div class="char">
-<div class="ja">い<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">yì<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">い<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ja<span class="nasal-n">n</span><span class="tone-number">3</span></div></div>
+
 <div class="hanzi">印</div>
 <div class="ko">ㅇㅣ<span class="nasal-n">ㄴ</span></div>
 </div>
-<div class="char">
-<div class="ja">しょ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">xià<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">しょ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">zoe<span class="nasal-ng">ng</span><span class="tone-number">6</span></div></div>
+
 <div class="hanzi">象</div>
 <div class="ko">ㅅㅏ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="本能" class="word">
-<div class="char">
-<div class="ja">ほ<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">bě<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">ほ<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">bu<span class="nasal-n">n</span><span class="tone-number">2</span></div></div>
+
 <div class="hanzi">本</div>
 <div class="ko">ㅂㅗ<span class="nasal-n">ㄴ</span></div>
 </div>
-<div class="char">
-<div class="ja">の<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">né<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">の<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">na<span class="nasal-ng">ng</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">能</div>
 <div class="ko">ㄴㅡ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="運動" class="word">
-<div class="char">
-<div class="ja">う<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">yù<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">う<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">wa<span class="nasal-n">n</span><span class="tone-number">6</span></div></div>
+
 <div class="hanzi">運</div>
 <div class="ko">ㅇㅜ<span class="nasal-n">ㄴ</span></div>
 </div>
-<div class="char">
-<div class="ja">ど<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">dò<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">ど<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">du<span class="nasal-ng">ng</span><span class="tone-number">6</span></div></div>
+
 <div class="hanzi">動</div>
 <div class="ko">ㄷㅗ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="傳統" class="word">
-<div class="char">
-<div class="ja">で<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">chuá<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">で<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">cyu<span class="nasal-n">n</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">傳</div>
 <div class="ko">ㅈㅓ<span class="nasal-n">ㄴ</span></div>
 </div>
-<div class="char">
-<div class="ja">と<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">tǒ<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">と<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">tu<span class="nasal-ng">ng</span><span class="tone-number">2</span></div></div>
+
 <div class="hanzi">統</div>
 <div class="ko">ㅌㅗ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="青年" class="word">
-<div class="char">
-<div class="ja">せ<span class="nasal-ng">い</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">qī<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">せ<span class="nasal-ng">い</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ci<span class="nasal-ng">ng</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">青</div>
 <div class="ko">ㅊㅓ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">ね<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">niá<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">ね<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ni<span class="nasal-n">n</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">年</div>
 <div class="ko">ㄴㅕ<span class="nasal-n">ㄴ</span></div>
 </div>
 </div>
 <div aria-label="病院" class="word">
-<div class="char">
-<div class="ja">びょ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">bì<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">びょ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">be<span class="nasal-ng">ng</span><span class="tone-number">6</span></div></div>
+
 <div class="hanzi">病</div>
 <div class="ko">ㅂㅕ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">い<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">yuà<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">い<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">jyu<span class="nasal-n">n</span><span class="tone-number">2</span></div></div>
+
 <div class="hanzi">院</div>
 <div class="ko">ㅇㅜㅓ<span class="nasal-n">ㄴ</span></div>
 </div>
 </div>
 <div aria-label="公園" class="word">
-<div class="char">
-<div class="ja">こ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">gō<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">こ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">gu<span class="nasal-ng">ng</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">公</div>
 <div class="ko">ㄱㅗ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">え<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">yuá<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">え<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">jyu<span class="nasal-n">n</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">園</div>
 <div class="ko">ㅇㅜㅓ<span class="nasal-n">ㄴ</span></div>
 </div>
 </div>
 <div aria-label="環境" class="word">
-<div class="char">
-<div class="ja">か<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">huá<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">か<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">waa<span class="nasal-n">n</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">環</div>
 <div class="ko">ㅎㅗㅏ<span class="nasal-n">ㄴ</span></div>
 </div>
-<div class="char">
-<div class="ja">きょ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">jì<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">きょ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">gi<span class="nasal-ng">ng</span><span class="tone-number">2</span></div></div>
+
 <div class="hanzi">境</div>
 <div class="ko">ㄱㅕ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
-<div aria-label="音感" class="word"><div class="char"><div class="ja">お<span class="nasal-m">ん</span></div><div class="hanzi">音</div><div class="ko">ㅇㅡ<span class="nasal-m">ㅁ</span></div></div><div class="char"><div class="ja">か<span class="nasal-m">ん</span></div><div class="hanzi">感</div><div class="ko">ㄱㅏ<span class="nasal-m">ㅁ</span></div></div></div>
-<div aria-label="心情" class="word"><div class="char"><div class="ja">し<span class="nasal-m">ん</span></div><div class="hanzi">心</div><div class="ko">ㅅㅣ<span class="nasal-m">ㅁ</span></div></div><div class="char"><div class="ja">じょ<span class="nasal-ng">う</span></div><div class="hanzi">情</div><div class="ko">ㅈㅓ<span class="nasal-ng">ㅇ</span></div></div></div>
+<div aria-label="音感" class="word"><div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">yī<span class="nasal-m">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">お<span class="nasal-m">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ja<span class="nasal-m">m</span><span class="tone-number">1</span></div></div><div class="hanzi">音</div><div class="ko">ㅇㅡ<span class="nasal-m">ㅁ</span></div></div><div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">gǎ<span class="nasal-m">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">か<span class="nasal-m">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ga<span class="nasal-m">m</span><span class="tone-number">2</span></div></div><div class="hanzi">感</div><div class="ko">ㄱㅏ<span class="nasal-m">ㅁ</span></div></div></div>
+<div aria-label="心情" class="word"><div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">xī<span class="nasal-m">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">し<span class="nasal-m">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">sa<span class="nasal-m">m</span><span class="tone-number">1</span></div></div><div class="hanzi">心</div><div class="ko">ㅅㅣ<span class="nasal-m">ㅁ</span></div></div><div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">qí<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">じょ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ci<span class="nasal-ng">ng</span><span class="tone-number">4</span></div></div><div class="hanzi">情</div><div class="ko">ㅈㅓ<span class="nasal-ng">ㅇ</span></div></div></div>
 <div aria-label="英雄" class="word">
-<div class="char">
-<div class="ja">え<span class="nasal-ng">い</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">yī<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">え<span class="nasal-ng">い</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ji<span class="nasal-ng">ng</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">英</div>
 <div class="ko">ㅇㅕ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">ゆ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">xió<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">ゆ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">hu<span class="nasal-ng">ng</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">雄</div>
 <div class="ko">ㅇㅜ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
-<div aria-label="銀杏" class="word ginkgo-word"><div class="char"><div class="ja">ぎ<span class="nasal-n">ん</span></div><div class="hanzi">銀</div><div class="ko">ㅇㅡ<span class="nasal-n">ㄴ</span></div></div><div class="char"><div class="ja"><span class="ginkgo-gray">な</span><span class="annin-purple-deep">ん</span></div><div class="hanzi">杏</div><div class="ko">ㅎㅐ<span class="nasal-ng">ㅇ</span></div></div></div>
+<div aria-label="銀杏" class="word ginkgo-word"><div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">yí<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">ぎ<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">nga<span class="nasal-n">n</span><span class="tone-number">4</span></div></div><div class="hanzi">銀</div><div class="ko">ㅇㅡ<span class="nasal-n">ㄴ</span></div></div><div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">xì<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja ginkgo-special-green" lang="ja">ナン</div><div class="reading-layer reading-cantonese" lang="yue-Latn">ha<span class="nasal-ng">ng</span><span class="tone-number">6</span></div></div><div class="hanzi">杏</div><div class="ko">ㅎㅐ<span class="nasal-ng">ㅇ</span></div></div></div>
 <div aria-label="成功" class="word">
-<div class="char">
-<div class="ja">せ<span class="nasal-ng">い</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">ché<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">せ<span class="nasal-ng">い</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">si<span class="nasal-ng">ng</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">成</div>
 <div class="ko">ㅅㅓ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">こ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">gō<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">こ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">gu<span class="nasal-ng">ng</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">功</div>
 <div class="ko">ㄱㅗ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="清風" class="word">
-<div class="char">
-<div class="ja">せ<span class="nasal-ng">い</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">qī<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">せ<span class="nasal-ng">い</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ci<span class="nasal-ng">ng</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">清</div>
 <div class="ko">ㅊㅓ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">ふ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">fē<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">ふ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">fu<span class="nasal-ng">ng</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">風</div>
 <div class="ko">ㅍㅜ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="光明" class="word">
-<div class="char">
-<div class="ja">こ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">guā<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">こ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">gwo<span class="nasal-ng">ng</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">光</div>
 <div class="ko">ㄱㅗㅏ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">みょ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">mí<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">みょ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">mi<span class="nasal-ng">ng</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">明</div>
 <div class="ko">ㅁㅕ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="歡迎" class="word">
-<div class="char">
-<div class="ja">か<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">huā<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">か<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">fu<span class="nasal-n">n</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">歡</div>
 <div class="ko">ㅎㅗㅏ<span class="nasal-n">ㄴ</span></div>
 </div>
-<div class="char">
-<div class="ja">げ<span class="nasal-ng">い</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">yí<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">げ<span class="nasal-ng">い</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ji<span class="nasal-ng">ng</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">迎</div>
 <div class="ko">ㅇㅕ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="青春" class="word">
-<div class="char">
-<div class="ja">せ<span class="nasal-ng">い</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">qī<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">せ<span class="nasal-ng">い</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ci<span class="nasal-ng">ng</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">青</div>
 <div class="ko">ㅊㅓ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">しゅ<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">chū<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">しゅ<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ceo<span class="nasal-n">n</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">春</div>
 <div class="ko">ㅊㅜ<span class="nasal-n">ㄴ</span></div>
 </div>
 </div>
 <div aria-label="幸運" class="word">
-<div class="char">
-<div class="ja">こ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">xì<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">こ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ha<span class="nasal-ng">ng</span><span class="tone-number">6</span></div></div>
+
 <div class="hanzi">幸</div>
 <div class="ko">ㅎㅐ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">う<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">yù<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">う<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">wa<span class="nasal-n">n</span><span class="tone-number">6</span></div></div>
+
 <div class="hanzi">運</div>
 <div class="ko">ㅇㅜ<span class="nasal-n">ㄴ</span></div>
 </div>
 </div>
 <div aria-label="成長" class="word">
-<div class="char">
-<div class="ja">せ<span class="nasal-ng">い</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">ché<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">せ<span class="nasal-ng">い</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">si<span class="nasal-ng">ng</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">成</div>
 <div class="ko">ㅅㅓ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">ちょ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">zhǎ<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">ちょ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">zoe<span class="nasal-ng">ng</span><span class="tone-number">2</span></div></div>
+
 <div class="hanzi">長</div>
 <div class="ko">ㅈㅏ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="風景" class="word">
-<div class="char">
-<div class="ja">ふ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">fē<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">ふ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">fu<span class="nasal-ng">ng</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">風</div>
 <div class="ko">ㅍㅜ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">け<span class="nasal-ng">い</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">jǐ<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">け<span class="nasal-ng">い</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">gi<span class="nasal-ng">ng</span><span class="tone-number">2</span></div></div>
+
 <div class="hanzi">景</div>
 <div class="ko">ㄱㅕ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="共鳴" class="word">
-<div class="char">
-<div class="ja">きょ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">gò<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">きょ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">gu<span class="nasal-ng">ng</span><span class="tone-number">6</span></div></div>
+
 <div class="hanzi">共</div>
 <div class="ko">ㄱㅗ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">め<span class="nasal-ng">い</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">mí<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">め<span class="nasal-ng">い</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">mi<span class="nasal-ng">ng</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">鳴</div>
 <div class="ko">ㅁㅕ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="放心" class="word">
-<div class="char">
-<div class="ja">ほ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">fà<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">ほ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">fo<span class="nasal-ng">ng</span><span class="tone-number">3</span></div></div>
+
 <div class="hanzi">放</div>
 <div class="ko">ㅂㅏ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">し<span class="nasal-m">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">xī<span class="nasal-m">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">し<span class="nasal-m">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">sa<span class="nasal-m">m</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">心</div>
 <div class="ko">ㅅㅣ<span class="nasal-m">ㅁ</span></div>
 </div>
 </div>
 <div aria-label="想像" class="word">
-<div class="char">
-<div class="ja">そ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">xiǎ<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">そ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">soe<span class="nasal-ng">ng</span><span class="tone-number">2</span></div></div>
+
 <div class="hanzi">想</div>
 <div class="ko">ㅅㅏ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">ぞ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">xià<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">ぞ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">zoe<span class="nasal-ng">ng</span><span class="tone-number">6</span></div></div>
+
 <div class="hanzi">像</div>
 <div class="ko">ㅅㅏ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
 <div aria-label="平安" class="word">
-<div class="char">
-<div class="ja">へ<span class="nasal-ng">い</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">pí<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">へ<span class="nasal-ng">い</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">pi<span class="nasal-ng">ng</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">平</div>
 <div class="ko">ㅍㅕ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">あ<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">ā<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">あ<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">o<span class="nasal-n">n</span><span class="tone-number">1</span></div></div>
+
 <div class="hanzi">安</div>
 <div class="ko">ㅇㅏ<span class="nasal-n">ㄴ</span></div>
 </div>
 </div>
 <div aria-label="永遠" class="word">
-<div class="char">
-<div class="ja">え<span class="nasal-ng">い</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">yǒ<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">え<span class="nasal-ng">い</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">wi<span class="nasal-ng">ng</span><span class="tone-number">5</span></div></div>
+
 <div class="hanzi">永</div>
 <div class="ko">ㅇㅕ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">え<span class="nasal-n">ん</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">yuǎ<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">え<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">jyu<span class="nasal-n">n</span><span class="tone-number">5</span></div></div>
+
 <div class="hanzi">遠</div>
 <div class="ko">ㅇㅜㅓ<span class="nasal-n">ㄴ</span></div>
 </div>
 </div>
-<div aria-label="溫情" class="word"><div class="char"><div class="ja">お<span class="nasal-n">ん</span></div><div class="hanzi">溫</div><div class="ko">ㅇㅗ<span class="nasal-n">ㄴ</span></div></div><div class="char"><div class="ja">じょ<span class="nasal-ng">う</span></div><div class="hanzi">情</div><div class="ko">ㅈㅓ<span class="nasal-ng">ㅇ</span></div></div></div>
-<div aria-label="龍眼" class="word"><div class="char"><div class="ja">りゅ<span class="nasal-ng">う</span></div><div class="hanzi">龍</div><div class="ko">ㅇㅛ<span class="nasal-ng">ㅇ</span></div></div><div class="char"><div class="ja">が<span class="nasal-n">ん</span></div><div class="hanzi">眼</div><div class="ko">ㅇㅏ<span class="nasal-n">ㄴ</span></div></div></div>
+<div aria-label="溫情" class="word"><div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">wē<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">お<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">wa<span class="nasal-n">n</span><span class="tone-number">1</span></div></div><div class="hanzi">溫</div><div class="ko">ㅇㅗ<span class="nasal-n">ㄴ</span></div></div><div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">qí<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">じょ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ci<span class="nasal-ng">ng</span><span class="tone-number">4</span></div></div><div class="hanzi">情</div><div class="ko">ㅈㅓ<span class="nasal-ng">ㅇ</span></div></div></div>
+<div aria-label="龍眼" class="word"><div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">ló<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">りゅ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">lu<span class="nasal-ng">ng</span><span class="tone-number">4</span></div></div><div class="hanzi">龍</div><div class="ko">ㅇㅛ<span class="nasal-ng">ㅇ</span></div></div><div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">yǎ<span class="nasal-n">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">が<span class="nasal-n">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">ngaa<span class="nasal-n">n</span><span class="tone-number">5</span></div></div><div class="hanzi">眼</div><div class="ko">ㅇㅏ<span class="nasal-n">ㄴ</span></div></div></div>
 <div aria-label="明朗" class="word">
-<div class="char">
-<div class="ja">め<span class="nasal-ng">い</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">mí<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">め<span class="nasal-ng">い</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">mi<span class="nasal-ng">ng</span><span class="tone-number">4</span></div></div>
+
 <div class="hanzi">明</div>
 <div class="ko">ㅁㅕ<span class="nasal-ng">ㅇ</span></div>
 </div>
-<div class="char">
-<div class="ja">ろ<span class="nasal-ng">う</span></div>
+<div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">lǎ<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">ろ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">lo<span class="nasal-ng">ng</span><span class="tone-number">5</span></div></div>
+
 <div class="hanzi">朗</div>
 <div class="ko">ㄹㅏ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
-<div aria-label="森林" class="word"><div class="char"><div class="ja">し<span class="nasal-m">ん</span></div><div class="hanzi">森</div><div class="ko">ㅅㅏ<span class="nasal-m">ㅁ</span></div></div><div class="char"><div class="ja">り<span class="nasal-m">ん</span></div><div class="hanzi">林</div><div class="ko">ㄹㅣ<span class="nasal-m">ㅁ</span></div></div></div>
-<div aria-label="南風" class="word"><div class="char"><div class="ja">な<span class="nasal-m">ん</span></div><div class="hanzi">南</div><div class="ko">ㄴㅏ<span class="nasal-m">ㅁ</span></div></div><div class="char"><div class="ja">ぷ<span class="nasal-ng">う</span></div><div class="hanzi">風</div><div class="ko">ㅍㅜ<span class="nasal-ng">ㅇ</span></div></div></div></section><section class="notes clean-notes"><h2>A small coda guide</h2><p class="notes-lead">A coda is the sound at the end of a syllable. For these nasal codas, a useful Middle Chinese sketch is:</p><div class="fossil-map"><div class="fossil-row"><span class="nasal-m">-m</span><span>Korean ㅁ · Japanese ん · Mandarin -n · Cantonese -m</span></div><div class="fossil-row"><span class="nasal-n">-n</span><span>Korean ㄴ · Japanese ん · Mandarin -n · Cantonese -n</span></div><div class="fossil-row"><span class="nasal-ng">-ŋ</span><span>Korean ㅇ · Japanese has more than one historical route · Mandarin -ng · Cantonese -ng</span></div></div><section class="japanese-story"><h3>Then there is <a class="yokan-search" href="https://www.google.com/search?q=Y%C5%8Dkan" rel="noopener noreferrer" target="_blank">Yōkan</a>.</h3><p>In one major Sino-Japanese route, old <span class="nasal-ng">-ŋ</span> gradually stopped behaving like a consonant, melting into long vowels. But later borrowing layers can preserve a different flavor. That is exactly why <em>羊羹</em> is such a nice specimen. <a class="refmark" href="#ref-ito-mester">[1]</a></p><div class="yokan-joke"><p>羊羹 (Yōkan) is not a failed rule, but the cutest reminder that different borrowing layers can send the same old coda toward different endings. 羹 is read <em>かん</em> in this Tō-on layer, while 羊 → <em>よう</em> follows the long-vowel route.</p></div><div class="sugar-endings" aria-label="A playful visual garnish pairing the two readings with wasanbon and kokutō yokan flavors; the sugar flavors are not historical sound correspondences."><div class="sugar-ending sugar-wasanbon" title="visual flavor: 和三盆"><span class="sugar-reading" lang="ja">よう</span><span class="sugar-flavor">和三盆</span></div><div class="sugar-ending sugar-kokuto" title="visual flavor: 黒糖"><span class="sugar-reading" lang="ja">かん</span><span class="sugar-flavor">黒糖</span></div></div><p class="yokan-punchline">one dessert, two routes, both sweet</p><section class="sweet-shelf"><h4>Other sweet counterexamples</h4><div class="sweet-grid"><div class="sweet-item"><div class="sweet-word"><span class="sweet-hanzi">杏仁豆腐</span><span class="sweet-kana">あんにんどうふ</span></div><p>杏 historically ended in -ŋ, but here it enters through the later あん reading. A dessert with a later borrowing layer baked into its name. <a class="refmark" href="#ref-ito-mester">[4]</a></p></div><div class="sweet-item"><div class="sweet-word"><span class="sweet-hanzi">杏子餡</span><span class="sweet-kana">あんずあん</span></div><p>杏子 itself preserves a Tang-on-derived fruit name; add sugar and syrup, and the later layer literally becomes a sweet filling. <a class="refmark" href="#ref-ito-mester">[4]</a></p></div></div></section></section><section class="m-section"><h3>Then ㅁ walks in.</h3><div class="m-walks-in"><p>感 looks perfectly ordinary in Mandarin: gǎn.</p><p>But Korean 감 and Cantonese gam² quietly point to an older -m.</p><p>Good 音感 helps.</p></div><p class="m-followup">Mandarin merged old <span class="nasal-m">-m</span> with <span class="nasal-n">-n</span>. Korean and Cantonese kept the nasal codas apart: <strong>/m n ŋ/</strong>. That makes words like 感 especially nice little fossils. <a class="refmark" href="#ref-zee">[3]</a></p></section><section class="why-section"><h3>Why linguists care</h3><p>Sino-Xenic readings carry traces from different moments in Chinese sound history. Chinese words reached Korean, Japanese, and Vietnamese at different times. Their borrowed pronunciations sometimes preserve sounds that later changed in Chinese itself. By comparing these readings, historical phonologists get clues to earlier Chinese pronunciation. <a class="refmark" href="#ref-shen">[2]</a></p></section></section><section class="sources academic-sources"><h2>Reading shelf</h2><ol><li id="ref-ito-mester"><a href="https://people.ucsc.edu/~mester/papers/2015_ito_mester_sinojapanese_phonology.pdf" rel="noopener noreferrer" target="_blank">Ito, Junko, and Armin Mester. 2015. “Sino-Japanese Phonology.” In The Handbook of Japanese Phonetics and Phonology, edited by Haruo Kubozono, 289–312. Berlin/Boston: De Gruyter Mouton.</a></li><li id="ref-shen"><a href="https://www.cambridge.org/core/books/phonological-history-of-chinese/595EECB379A14AF544FB80261D889516" rel="noopener noreferrer" target="_blank">Shen, Zhongwei. 2020. A Phonological History of Chinese. Cambridge: Cambridge University Press.</a></li><li id="ref-zee"><a href="https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/chinese-hong-kong-cantonese/BE506B659CA1CCDC96570765FF35FD73" rel="noopener noreferrer" target="_blank">Zee, Eric. 1991. “Chinese (Hong Kong Cantonese).” Journal of the International Phonetic Association 21 (1): 46–48.</a></li></ol><p class="dict-shelf">Dictionaries: <a href="https://kotobank.jp/word/%E5%94%90%E9%9F%B3-103158" rel="noopener noreferrer" target="_blank">唐音</a> · <a href="https://kotobank.jp/word/%E7%BE%8A%E7%BE%B9-145584" rel="noopener noreferrer" target="_blank">羊羹</a> · <a href="https://kotobank.jp/word/%E6%9D%8F%E4%BB%81-429654" rel="noopener noreferrer" target="_blank">杏仁</a></p></section><section class="closing-yokan"><div class="closing-kana">ようかん</div><div class="closing-hanzi">羊羹</div><div class="closing-mc">Middle Chinese: yang · kaeng</div><div class="closing-codas">-ŋ　·　-ŋ</div></section><section class="final-punchline">如果后学的是唐音，那ai写的code是不是有糖味儿？</section>
+<div aria-label="森林" class="word"><div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">sē<span class="nasal-m">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">し<span class="nasal-m">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">sa<span class="nasal-m">m</span><span class="tone-number">1</span></div></div><div class="hanzi">森</div><div class="ko">ㅅㅏ<span class="nasal-m">ㅁ</span></div></div><div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">lí<span class="nasal-m">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">り<span class="nasal-m">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">la<span class="nasal-m">m</span><span class="tone-number">4</span></div></div><div class="hanzi">林</div><div class="ko">ㄹㅣ<span class="nasal-m">ㅁ</span></div></div></div>
+<div aria-label="南風" class="word"><div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">ná<span class="nasal-m">n</span></div><div class="reading-layer reading-hiragana ja" lang="ja">な<span class="nasal-m">ん</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">naa<span class="nasal-m">m</span><span class="tone-number">4</span></div></div><div class="hanzi">南</div><div class="ko">ㄴㅏ<span class="nasal-m">ㅁ</span></div></div><div class="char"><div class="reading-stack"><div class="reading-layer reading-pinyin" lang="zh-Latn-pinyin">fē<span class="nasal-ng">ng</span></div><div class="reading-layer reading-hiragana ja" lang="ja">ぷ<span class="nasal-ng">う</span></div><div class="reading-layer reading-cantonese" lang="yue-Latn">fu<span class="nasal-ng">ng</span><span class="tone-number">1</span></div></div><div class="hanzi">風</div><div class="ko">ㅍㅜ<span class="nasal-ng">ㅇ</span></div></div></div></section><section class="notes clean-notes" id="small-guide"><h2>A small guide</h2><p class="notes-lead">A coda is the sound at the end of a syllable. For these nasal codas, a useful Middle Chinese sketch is:</p><div class="fossil-map"><div class="fossil-row"><span class="nasal-m">-m</span><span>Korean ㅁ · Japanese ん · Mandarin -n · Cantonese -m</span></div><div class="fossil-row"><span class="nasal-n">-n</span><span>Korean ㄴ · Japanese ん · Mandarin -n · Cantonese -n</span></div><div class="fossil-row"><span class="nasal-ng">-ŋ</span><span>Korean ㅇ · Japanese has more than one historical route · Mandarin -ng · Cantonese -ng</span></div></div><section class="japanese-story"><h3>Then there is <a class="yokan-search" href="https://www.google.com/search?q=Y%C5%8Dkan" rel="noopener noreferrer" target="_blank">Yōkan</a>.</h3><blockquote class="yokan-quote">
+<div class="yokan-quote-title">羊羹 <span lang="ja-Latn">yōkan</span></div>
+<div class="yokan-quote-gloss"><em>vegetarian lamb cake</em></div>
+<div class="yokan-quote-note">a lamb dish from which the lamb has been removed for several centuries</div>
+</blockquote><p>In one major Sino-Japanese route, old <span class="nasal-ng">-ŋ</span> gradually stopped behaving like a consonant, melting into long vowels. But later borrowing layers can preserve a different flavor. That is exactly why 羊羹 is such a nice specimen. <a class="refmark" href="#ref-ito-mester">[1]</a></p><div class="yokan-joke"><p>羊羹 (Yōkan) is not a failed rule, but the cutest reminder that different borrowing layers can send the same old coda toward different endings. 羹 is read かん in this <a class="term-link" href="https://kotobank.jp/word/%E5%94%90%E9%9F%B3-103158" rel="noopener noreferrer" target="_blank">Tō-on</a> layer, while 羊 → よう follows the long-vowel route.</p></div><div aria-label="A playful visual garnish pairing the two readings with wasanbon and kokutō yokan flavors; the sugar flavors are not historical sound correspondences." class="sugar-endings"><div class="sugar-ending sugar-wasanbon" title="visual flavor: 和三盆"><span class="sugar-reading" lang="ja">ヨウ</span><span class="sugar-flavor">和三盆</span></div><div class="sugar-ending sugar-kokuto" title="visual flavor: 黒糖"><span class="sugar-reading" lang="ja">カン</span><span class="sugar-flavor">黒糖</span></div></div><p class="yokan-punchline">one dessert, two routes, both sweet</p><section class="sweet-shelf"><h4>Other sweet counterexamples</h4><div class="sweet-grid"><div class="sweet-item"><div class="sweet-word"><span class="sweet-hanzi">杏仁豆腐</span><span class="sweet-kana">あんにんどうふ</span></div><p>杏 historically ended in -ŋ, but here it enters through the later あん reading. A dessert with a later borrowing layer baked into its name. <a class="refmark" href="#ref-ito-mester">[4]</a></p></div><div class="sweet-item"><div class="sweet-word"><span class="sweet-hanzi">杏子餡</span><span class="sweet-kana">あんずあん</span></div><p>杏子 itself preserves a Tang-on-derived fruit name; add sugar and syrup, and the later layer literally becomes a sweet filling. <a class="refmark" href="#ref-ito-mester">[4]</a></p></div></div></section></section><section class="m-section"><h3>Then ㅁ walks in.</h3><div class="m-walks-in"><p>感 looks perfectly ordinary in Mandarin: gǎn.</p><p>But Korean 감 and Cantonese gam² quietly point to an older -m.</p><p>Good 音感 helps.</p></div><p class="m-followup">Mandarin merged old <span class="nasal-m">-m</span> with <span class="nasal-n">-n</span>. Korean and Cantonese kept the nasal codas apart: <strong>/m n ŋ/</strong>. That makes words like 感 especially nice little fossils. <a class="refmark" href="#ref-zee">[3]</a></p></section><section class="why-section"><h3>Why linguists care</h3><p>Each Sino-Xenic reading is a small slice of Chinese sound history, taken at a different moment of borrowing. Some preserve distinctions that later disappeared in Chinese. Historical phonologists put these slices side by side, trace the differences between them, and reconstruct earlier sound systems. <a class="refmark" href="#ref-shen">[2]</a></p></section></section><section class="sources academic-sources"><h2>References</h2><ol><li id="ref-ito-mester"><a href="https://people.ucsc.edu/~mester/papers/2015_ito_mester_sinojapanese_phonology.pdf" rel="noopener noreferrer" target="_blank">Ito, Junko, and Armin Mester. 2015. “Sino-Japanese Phonology.” In The Handbook of Japanese Phonetics and Phonology, edited by Haruo Kubozono, 289–312. Berlin/Boston: De Gruyter Mouton.</a></li><li id="ref-shen"><a href="https://www.cambridge.org/core/books/phonological-history-of-chinese/595EECB379A14AF544FB80261D889516" rel="noopener noreferrer" target="_blank">Shen, Zhongwei. 2020. A Phonological History of Chinese. Cambridge: Cambridge University Press.</a></li><li id="ref-zee"><a href="https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/chinese-hong-kong-cantonese/BE506B659CA1CCDC96570765FF35FD73" rel="noopener noreferrer" target="_blank">Zee, Eric. 1991. “Chinese (Hong Kong Cantonese).” Journal of the International Phonetic Association 21 (1): 46–48.</a></li></ol><p class="dict-shelf">Dictionaries: <a href="https://kotobank.jp/word/%E5%94%90%E9%9F%B3-103158" rel="noopener noreferrer" target="_blank">唐音</a> · <a href="https://kotobank.jp/word/%E7%BE%8A%E7%BE%B9-145584" rel="noopener noreferrer" target="_blank">羊羹</a> · <a href="https://kotobank.jp/word/%E6%9D%8F%E4%BB%81-429654" rel="noopener noreferrer" target="_blank">杏仁</a> · <a href="https://kotobank.jp/word/%E9%8A%80%E6%9D%8F-433806" rel="noopener noreferrer" target="_blank">銀杏</a> · <a href="https://kotobank.jp/word/%E7%8F%BE%E7%8A%B6-492293" rel="noopener noreferrer" target="_blank">現状</a> · <a href="https://kotobank.jp/word/%E7%8F%BE%E5%A0%B4-492294" rel="noopener noreferrer" target="_blank">現場</a></p></section><section class="closing-yokan"><div class="closing-pinyin" lang="zh-Latn-pinyin">yáng gēng</div><div class="closing-hanzi">羊羹</div><div class="closing-mc">Middle Chinese: yang · kaeng</div><div class="closing-codas">-ŋ　·　-ŋ</div></section><section class="final-punchline">如果后学的是唐音，那ai写的code是不是有糖味儿？</section><p class="cantonese-disclaimer">disclaimer: i don't know much about cantonese (yet). comments welcomed!</p>
+<footer class="site-footer">
+  <div>Made by LemmaPro @Pilemma2026</div>
+  <a href="https://www.pilemma.org" rel="noopener noreferrer">www.pilemma.org</a>
+</footer>
 </main>
-</body>
+<script>
+(() => {
+  const root = document.documentElement;
+  const control = document.querySelector('.reading-control');
+  const bead = document.querySelector('.reading-bead');
+  const buttons = [...document.querySelectorAll('.reading-control [data-reading]')];
+  const allowed = new Set(['pinyin', 'hiragana', 'cantonese']);
+
+  const placeBead = (button) => {
+    if (!control || !bead || !button) return;
+    const controlBox = control.getBoundingClientRect();
+    const buttonBox = button.getBoundingClientRect();
+    const x = buttonBox.left - controlBox.left + (buttonBox.width - bead.offsetWidth) / 2;
+    bead.style.transform = `translateX(${x}px)`;
+  };
+
+  const setReading = (reading, save = true) => {
+    if (!allowed.has(reading)) return;
+    root.dataset.reading = reading;
+    let activeButton = null;
+    buttons.forEach((button) => {
+      const active = button.dataset.reading === reading;
+      button.setAttribute('aria-pressed', String(active));
+      if (active) activeButton = button;
+    });
+    placeBead(activeButton);
+    if (save) {
+      try { localStorage.setItem('pilemma-reading-layer', reading); } catch (_) {}
+    }
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => setReading(button.dataset.reading));
+  });
+
+  try {
+    const saved = localStorage.getItem('pilemma-reading-layer');
+    if (allowed.has(saved)) setReading(saved, false);
+    else placeBead(buttons.find((button) => button.getAttribute('aria-pressed') === 'true'));
+  } catch (_) {
+    placeBead(buttons.find((button) => button.getAttribute('aria-pressed') === 'true'));
+  }
+
+  window.addEventListener('resize', () => {
+    placeBead(buttons.find((button) => button.getAttribute('aria-pressed') === 'true'));
+  });
+
+
+
+    
+  // v42: Safari-safe double-click selection.
+  // Select only the actual word under the pointer, excluding paragraph/block endings.
+  const pageForSelection = document.querySelector('main.page');
+
+  function textCaretAtPoint(x, y) {
+    if (document.caretPositionFromPoint) {
+      const pos = document.caretPositionFromPoint(x, y);
+      if (pos) return { node: pos.offsetNode, offset: pos.offset };
+    }
+    if (document.caretRangeFromPoint) {
+      const range = document.caretRangeFromPoint(x, y);
+      if (range) return { node: range.startContainer, offset: range.startOffset };
+    }
+    return null;
+  }
+
+  function nearestTextNode(node) {
+    if (!node) return null;
+    if (node.nodeType === Node.TEXT_NODE) return node;
+    const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+    return walker.nextNode();
+  }
+
+  function wordBounds(text, offset) {
+    if (!text) return null;
+    const safeOffset = Math.max(0, Math.min(offset, text.length - 1));
+
+    if (window.Intl && Intl.Segmenter) {
+      const segmenter = new Intl.Segmenter(undefined, { granularity: 'word' });
+      for (const part of segmenter.segment(text)) {
+        const start = part.index;
+        const end = start + part.segment.length;
+        if (safeOffset >= start && safeOffset < end && part.isWordLike) {
+          return [start, end];
+        }
+      }
+    }
+
+    const boundary = /[\s.,;:!?()[\]{}"'“”‘’\/\\|·…—–<>，。；：！？、（）【】《》]/;
+    let start = safeOffset;
+    let end = safeOffset + 1;
+
+    while (start > 0 && !boundary.test(text[start - 1])) start--;
+    while (end < text.length && !boundary.test(text[end])) end++;
+
+    return start < end ? [start, end] : null;
+  }
+
+  if (pageForSelection) {
+    pageForSelection.addEventListener('dblclick', (event) => {
+      const element = event.target.nodeType === Node.ELEMENT_NODE
+        ? event.target
+        : event.target.parentElement;
+
+      // Don't interfere with links or UI controls.
+      if (element && element.closest('a, button, input, textarea, select, summary')) return;
+
+      let caret = textCaretAtPoint(event.clientX, event.clientY);
+      if (!caret) return;
+
+      let textNode = caret.node;
+      if (textNode.nodeType !== Node.TEXT_NODE) {
+        textNode = nearestTextNode(textNode);
+        if (!textNode) return;
+        caret = { node: textNode, offset: 0 };
+      }
+
+      const text = textNode.nodeValue || '';
+      if (!text.trim()) return;
+
+      const offset = Math.min(caret.offset, Math.max(0, text.length - 1));
+      const bounds = wordBounds(text, offset);
+      if (!bounds) return;
+
+      const [start, end] = bounds;
+      const range = document.createRange();
+      range.setStart(textNode, start);
+      range.setEnd(textNode, end);
+
+      const selection = window.getSelection();
+      if (!selection) return;
+
+      event.preventDefault();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    });
+  }
+
+// Reliable in-page anchor fallback (read more + reference marks).
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (event) => {
+      const raw = anchor.getAttribute('href');
+      if (!raw || raw === '#') return;
+      const target = document.getElementById(decodeURIComponent(raw.slice(1)));
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      try { history.replaceState(null, '', raw); } catch (_) {}
+    });
+  });
+})();
+</script></body>
 </html>
