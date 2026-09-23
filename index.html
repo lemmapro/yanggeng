@@ -2521,6 +2521,97 @@
       padding-top: 0 !important;
       padding-bottom: 0 !important;
     }
+
+
+    /* v34: 羊羹 first; sugar flavors as a visual garnish, not a sound chart */
+    .sugar-endings{
+      width: 100%;
+      max-width: none;
+      margin: 24px 0 8px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .sugar-ending{
+      padding: 12px 16px 10px;
+      border: 1px solid #e7dfd0;
+      border-radius: 3px;
+      text-align: center;
+    }
+
+    .sugar-reading{
+      display: block;
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+      font-size: clamp(21px, 1.7vw, 27px);
+      line-height: 1.15;
+      letter-spacing: .08em;
+    }
+
+    .sugar-flavor{
+      display: block;
+      margin-top: 5px;
+      font-family: "Songti TC", "Songti SC", "Noto Serif CJK TC", "PMingLiU", serif;
+      font-size: 11px;
+      line-height: 1.2;
+      letter-spacing: .08em;
+      color: #7b7468;
+    }
+
+    .sugar-wasanbon{
+      background: #fbf6e8;
+    }
+
+    .sugar-kokuto{
+      background: #654536;
+      border-color: #654536;
+    }
+
+    .sugar-kokuto .sugar-reading{
+      color: #fff8ed;
+    }
+
+    .sugar-kokuto .sugar-flavor{
+      color: #e8d9ca;
+    }
+
+
+    .japanese-story h3 .yokan-search{
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: .16em;
+      text-decoration-color: #b8b8b8;
+    }
+
+    .japanese-story h3 .yokan-search:hover{
+      text-decoration-color: currentColor;
+    }
+
+    /* the section title is a transition; the grey field starts underneath it */
+    .m-section > h3{
+      display: block;
+      margin: 0 0 14px;
+    }
+
+    @media (max-width: 520px){
+      .sugar-endings{
+        max-width: 100%;
+      }
+    }
+
+
+    /* final: quiet, left-aligned yokan punchline */
+    .yokan-punchline{
+      margin: 10px 0 4px !important;
+      text-align: left !important;
+      font-family: Georgia, "Times New Roman", serif !important;
+      font-size: clamp(15px, 1.08vw, 18px) !important;
+      font-style: normal !important;
+      font-weight: 400 !important;
+      color: #777 !important;
+      text-transform: none !important;
+    }
 </style>
 </head>
 <body>
@@ -2828,16 +2919,16 @@
 <div class="ko">ㅁㅕ<span class="nasal-ng">ㅇ</span></div>
 </div>
 </div>
-<div aria-label="友情" class="word">
+<div aria-label="放心" class="word">
 <div class="char">
-<div class="ja">ゆう</div>
-<div class="hanzi">友</div>
-<div class="ko">ㅇㅜ</div>
+<div class="ja">ほ<span class="nasal-ng">う</span></div>
+<div class="hanzi">放</div>
+<div class="ko">ㅂㅏ<span class="nasal-ng">ㅇ</span></div>
 </div>
 <div class="char">
-<div class="ja">じょ<span class="nasal-ng">う</span></div>
-<div class="hanzi">情</div>
-<div class="ko">ㅈㅓ<span class="nasal-ng">ㅇ</span></div>
+<div class="ja">し<span class="nasal-m">ん</span></div>
+<div class="hanzi">心</div>
+<div class="ko">ㅅㅣ<span class="nasal-m">ㅁ</span></div>
 </div>
 </div>
 <div aria-label="想像" class="word">
@@ -2891,59 +2982,7 @@
 </div>
 </div>
 <div aria-label="森林" class="word"><div class="char"><div class="ja">し<span class="nasal-m">ん</span></div><div class="hanzi">森</div><div class="ko">ㅅㅏ<span class="nasal-m">ㅁ</span></div></div><div class="char"><div class="ja">り<span class="nasal-m">ん</span></div><div class="hanzi">林</div><div class="ko">ㄹㅣ<span class="nasal-m">ㅁ</span></div></div></div>
-<div aria-label="南風" class="word"><div class="char"><div class="ja">な<span class="nasal-m">ん</span></div><div class="hanzi">南</div><div class="ko">ㄴㅏ<span class="nasal-m">ㅁ</span></div></div><div class="char"><div class="ja">ぷ<span class="nasal-ng">う</span></div><div class="hanzi">風</div><div class="ko">ㅍㅜ<span class="nasal-ng">ㅇ</span></div></div></div></section><section class="notes clean-notes"><h2>A small coda guide</h2><p class="notes-lead">A coda is the sound at the end of a syllable. For these nasal codas, a useful Middle Chinese sketch is:</p><div class="fossil-map"><div class="fossil-row"><span class="nasal-m">-m</span><span>Korean ㅁ · Japanese ん · Mandarin -n · Cantonese -m</span></div><div class="fossil-row"><span class="nasal-n">-n</span><span>Korean ㄴ · Japanese ん · Mandarin -n · Cantonese -n</span></div><div class="fossil-row"><span class="nasal-ng">-ŋ</span><span>Korean ㅇ · Japanese has more than one historical route · Mandarin -ng · Cantonese -ng</span></div></div><section class="japanese-story"><h3>Japanese: what melted?</h3><p>In one major Sino-Japanese route, old <span class="nasal-ng">-ŋ</span> gradually stopped behaving like a consonant. Its nasal trace softened into the end of the vowel; then the nasality disappeared, leaving an extra i or u, which often fused into a long vowel. <a class="refmark" href="#ref-ito-mester">[1]</a></p><div class="melt-strip">
-<div class="melt-box">
-<div class="melt-big"><span class="nasal-ng">-ŋ</span></div>
-<div class="melt-small">a consonant tail</div>
-</div>
-<div class="melt-arrow">→</div>
-<div class="melt-box">
-<div class="melt-big">nasal tail</div>
-<div class="melt-small">the coda softens</div>
-</div>
-<div class="melt-arrow">→</div>
-<div class="melt-box">
-<div class="melt-big">i / u</div>
-<div class="melt-small">nasality fades</div>
-</div>
-<div class="melt-arrow">→</div>
-<div class="melt-box">
-<div class="melt-big">long vowel</div>
-<div class="melt-small">the tail melts in</div>
-</div>
-</div><p class="melt-bridge">But later borrowing layers can preserve a different flavor. That is exactly why <em>羊羹</em> is such a nice specimen.</p><div class="yokan-joke"><p>羊羹 is not a failed rule. It is the cutest reminder that different borrowing layers can send the same old coda toward different endings.</p><p>羹 is read <em>かん</em> in this Tō-on layer, while 羊 → <em>よう</em> follows the long-vowel route.</p></div><figure aria-label="羊羹 borrowing diagram: 羊 follows the early borrowing route to よう; the later 唐音 layer gives 羹 the reading かん." class="borrowing-figure">
-<div class="borrowing-grid">
-<div class="borrow-node">
-<div class="borrow-title">
-<span class="route-early">羊</span><span class="route-late">羹</span>
-</div>
-<div class="borrow-sub borrow-coda">-ŋ　-ŋ</div>
-</div>
-<svg aria-hidden="true" class="arrow-horizontal diagram-arrow" viewbox="0 0 76 14">
-<path d="M1 7H74M69 3L74 7L69 11"></path>
-</svg>
-<div class="borrow-node">
-<div class="borrow-title route-late">唐音</div>
-<div class="borrow-sub">later Chinese layer</div>
-</div>
-<div class="borrow-drop">
-<svg aria-hidden="true" class="diagram-arrow" viewbox="0 0 14 70">
-<path d="M7 1V68M3 63L7 68L11 63"></path>
-</svg>
-<span>borrow<br/>early</span>
-</div>
-<div aria-hidden="true"></div>
-<div class="borrow-drop">
-<svg aria-hidden="true" class="diagram-arrow" viewbox="0 0 14 70">
-<path d="M7 1V68M3 63L7 68L11 63"></path>
-</svg>
-<span>borrow<br/>later</span>
-</div>
-<div class="borrow-reading route-early" lang="ja">よう</div>
-<div aria-hidden="true"></div>
-<div class="borrow-reading route-late" lang="ja">かん</div>
-</div>
-</figure><p class="yokan-punchline">one dessert, two routes, still sweet</p><section class="sweet-shelf"><h4>Other sweet counterexamples</h4><div class="sweet-grid"><div class="sweet-item"><div class="sweet-word"><span class="sweet-hanzi">杏仁豆腐</span><span class="sweet-kana">あんにんどうふ</span></div><p>杏 historically ended in -ŋ, but here it enters through the later あん reading. A dessert with a later borrowing layer baked into its name. <a class="refmark" href="#ref-ito-mester">[4]</a></p></div><div class="sweet-item"><div class="sweet-word"><span class="sweet-hanzi">杏子餡</span><span class="sweet-kana">あんずあん</span></div><p>杏子 itself preserves a Tang-on-derived fruit name; add sugar and syrup, and the later layer literally becomes a sweet filling. <a class="refmark" href="#ref-ito-mester">[4]</a></p></div></div></section></section><section class="m-section"><div class="m-walks-in"><h3>Then ㅁ walks in.</h3><p>感 looks perfectly ordinary in Mandarin: gǎn.</p><p>But Korean 감 and Cantonese gam² quietly point to an older -m.</p><p>Good 音感 helps.</p></div><p class="m-followup">Old <span class="nasal-m">-m</span> merged with <span class="nasal-n">-n</span> in Mandarin, but Korean still keeps ㅁ and Cantonese still keeps an /m n ŋ/ coda contrast. That makes words like 感 especially nice little fossils. <a class="refmark" href="#ref-zee">[3]</a></p></section><section class="why-section"><h3>Why linguists care</h3><p>Sino-Xenic readings carry traces from different moments in Chinese sound history. Chinese words reached Korean, Japanese, and Vietnamese at different times. Their borrowed pronunciations sometimes preserve sounds that later changed in Chinese itself. By comparing these readings, historical phonologists get clues to earlier Chinese pronunciation. <a class="refmark" href="#ref-shen">[2]</a></p></section></section><section class="sources academic-sources"><h2>Reading shelf</h2><ol><li id="ref-ito-mester"><a href="https://people.ucsc.edu/~mester/papers/2015_ito_mester_sinojapanese_phonology.pdf" rel="noopener noreferrer" target="_blank">Ito, Junko, and Armin Mester. 2015. “Sino-Japanese Phonology.” In The Handbook of Japanese Phonetics and Phonology, edited by Haruo Kubozono, 289–312. Berlin/Boston: De Gruyter Mouton.</a></li><li id="ref-shen"><a href="https://www.cambridge.org/core/books/phonological-history-of-chinese/595EECB379A14AF544FB80261D889516" rel="noopener noreferrer" target="_blank">Shen, Zhongwei. 2020. A Phonological History of Chinese. Cambridge: Cambridge University Press.</a></li><li id="ref-zee"><a href="https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/chinese-hong-kong-cantonese/BE506B659CA1CCDC96570765FF35FD73" rel="noopener noreferrer" target="_blank">Zee, Eric. 1991. “Chinese (Hong Kong Cantonese).” Journal of the International Phonetic Association 21 (1): 46–48.</a></li></ol><p class="dict-shelf">Dictionaries: <a href="https://kotobank.jp/word/%E5%94%90%E9%9F%B3-103158" rel="noopener noreferrer" target="_blank">唐音</a> · <a href="https://kotobank.jp/word/%E7%BE%8A%E7%BE%B9-145584" rel="noopener noreferrer" target="_blank">羊羹</a> · <a href="https://kotobank.jp/word/%E6%9D%8F%E4%BB%81-429654" rel="noopener noreferrer" target="_blank">杏仁</a></p></section><section class="closing-yokan"><div class="closing-kana">ようかん</div><div class="closing-hanzi">羊羹</div><div class="closing-mc">Middle Chinese: yang · kaeng</div><div class="closing-codas">-ŋ　·　-ŋ</div></section><section class="final-punchline">如果后学的是唐音，那ai写的code是不是有糖味儿？</section>
+<div aria-label="南風" class="word"><div class="char"><div class="ja">な<span class="nasal-m">ん</span></div><div class="hanzi">南</div><div class="ko">ㄴㅏ<span class="nasal-m">ㅁ</span></div></div><div class="char"><div class="ja">ぷ<span class="nasal-ng">う</span></div><div class="hanzi">風</div><div class="ko">ㅍㅜ<span class="nasal-ng">ㅇ</span></div></div></div></section><section class="notes clean-notes"><h2>A small coda guide</h2><p class="notes-lead">A coda is the sound at the end of a syllable. For these nasal codas, a useful Middle Chinese sketch is:</p><div class="fossil-map"><div class="fossil-row"><span class="nasal-m">-m</span><span>Korean ㅁ · Japanese ん · Mandarin -n · Cantonese -m</span></div><div class="fossil-row"><span class="nasal-n">-n</span><span>Korean ㄴ · Japanese ん · Mandarin -n · Cantonese -n</span></div><div class="fossil-row"><span class="nasal-ng">-ŋ</span><span>Korean ㅇ · Japanese has more than one historical route · Mandarin -ng · Cantonese -ng</span></div></div><section class="japanese-story"><h3>Then there is <a class="yokan-search" href="https://www.google.com/search?q=Y%C5%8Dkan" rel="noopener noreferrer" target="_blank">Yōkan</a>.</h3><p>In one major Sino-Japanese route, old <span class="nasal-ng">-ŋ</span> gradually stopped behaving like a consonant, melting into long vowels. But later borrowing layers can preserve a different flavor. That is exactly why <em>羊羹</em> is such a nice specimen. <a class="refmark" href="#ref-ito-mester">[1]</a></p><div class="yokan-joke"><p>羊羹 (Yōkan) is not a failed rule, but the cutest reminder that different borrowing layers can send the same old coda toward different endings. 羹 is read <em>かん</em> in this Tō-on layer, while 羊 → <em>よう</em> follows the long-vowel route.</p></div><div class="sugar-endings" aria-label="A playful visual garnish pairing the two readings with wasanbon and kokutō yokan flavors; the sugar flavors are not historical sound correspondences."><div class="sugar-ending sugar-wasanbon" title="visual flavor: 和三盆"><span class="sugar-reading" lang="ja">よう</span><span class="sugar-flavor">和三盆</span></div><div class="sugar-ending sugar-kokuto" title="visual flavor: 黒糖"><span class="sugar-reading" lang="ja">かん</span><span class="sugar-flavor">黒糖</span></div></div><p class="yokan-punchline">one dessert, two routes, both sweet</p><section class="sweet-shelf"><h4>Other sweet counterexamples</h4><div class="sweet-grid"><div class="sweet-item"><div class="sweet-word"><span class="sweet-hanzi">杏仁豆腐</span><span class="sweet-kana">あんにんどうふ</span></div><p>杏 historically ended in -ŋ, but here it enters through the later あん reading. A dessert with a later borrowing layer baked into its name. <a class="refmark" href="#ref-ito-mester">[4]</a></p></div><div class="sweet-item"><div class="sweet-word"><span class="sweet-hanzi">杏子餡</span><span class="sweet-kana">あんずあん</span></div><p>杏子 itself preserves a Tang-on-derived fruit name; add sugar and syrup, and the later layer literally becomes a sweet filling. <a class="refmark" href="#ref-ito-mester">[4]</a></p></div></div></section></section><section class="m-section"><h3>Then ㅁ walks in.</h3><div class="m-walks-in"><p>感 looks perfectly ordinary in Mandarin: gǎn.</p><p>But Korean 감 and Cantonese gam² quietly point to an older -m.</p><p>Good 音感 helps.</p></div><p class="m-followup">Mandarin merged old <span class="nasal-m">-m</span> with <span class="nasal-n">-n</span>. Korean and Cantonese kept the nasal codas apart: <strong>/m n ŋ/</strong>. That makes words like 感 especially nice little fossils. <a class="refmark" href="#ref-zee">[3]</a></p></section><section class="why-section"><h3>Why linguists care</h3><p>Sino-Xenic readings carry traces from different moments in Chinese sound history. Chinese words reached Korean, Japanese, and Vietnamese at different times. Their borrowed pronunciations sometimes preserve sounds that later changed in Chinese itself. By comparing these readings, historical phonologists get clues to earlier Chinese pronunciation. <a class="refmark" href="#ref-shen">[2]</a></p></section></section><section class="sources academic-sources"><h2>Reading shelf</h2><ol><li id="ref-ito-mester"><a href="https://people.ucsc.edu/~mester/papers/2015_ito_mester_sinojapanese_phonology.pdf" rel="noopener noreferrer" target="_blank">Ito, Junko, and Armin Mester. 2015. “Sino-Japanese Phonology.” In The Handbook of Japanese Phonetics and Phonology, edited by Haruo Kubozono, 289–312. Berlin/Boston: De Gruyter Mouton.</a></li><li id="ref-shen"><a href="https://www.cambridge.org/core/books/phonological-history-of-chinese/595EECB379A14AF544FB80261D889516" rel="noopener noreferrer" target="_blank">Shen, Zhongwei. 2020. A Phonological History of Chinese. Cambridge: Cambridge University Press.</a></li><li id="ref-zee"><a href="https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/chinese-hong-kong-cantonese/BE506B659CA1CCDC96570765FF35FD73" rel="noopener noreferrer" target="_blank">Zee, Eric. 1991. “Chinese (Hong Kong Cantonese).” Journal of the International Phonetic Association 21 (1): 46–48.</a></li></ol><p class="dict-shelf">Dictionaries: <a href="https://kotobank.jp/word/%E5%94%90%E9%9F%B3-103158" rel="noopener noreferrer" target="_blank">唐音</a> · <a href="https://kotobank.jp/word/%E7%BE%8A%E7%BE%B9-145584" rel="noopener noreferrer" target="_blank">羊羹</a> · <a href="https://kotobank.jp/word/%E6%9D%8F%E4%BB%81-429654" rel="noopener noreferrer" target="_blank">杏仁</a></p></section><section class="closing-yokan"><div class="closing-kana">ようかん</div><div class="closing-hanzi">羊羹</div><div class="closing-mc">Middle Chinese: yang · kaeng</div><div class="closing-codas">-ŋ　·　-ŋ</div></section><section class="final-punchline">如果后学的是唐音，那ai写的code是不是有糖味儿？</section>
 </main>
 </body>
 </html>
