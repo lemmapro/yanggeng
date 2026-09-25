@@ -3989,6 +3989,136 @@
       }
     }
 
+
+
+    /* v67: brighter-night wording + right-aligned hint + steadier mobile wall spacing */
+
+    .legend-inside{
+      text-align: right !important;
+      margin-left: auto !important;
+    }
+
+    .legend-note{
+      text-align: right !important;
+      margin-left: auto !important;
+    }
+
+    .legend-hint[open] summary,
+    .legend-hint[open] .legend-inside,
+    .legend-hint[open] .legend-note{
+      text-align: right !important;
+    }
+
+    @media (max-width: 820px){
+      .wall{
+        row-gap: 26px !important;
+      }
+
+      .char{
+        grid-template-rows: 18px auto 18px !important;
+      }
+
+      .char > .reading-stack:first-child,
+      .char > .reading-stack-lower{
+        height: 18px !important;
+      }
+
+      .char > .reading-stack:first-child{
+        transform: translateY(-2px) !important;
+      }
+
+      .char > .reading-stack-lower{
+        transform: translateY(16px) !important;
+      }
+
+      .reading-layer,
+      .lower-reading-layer{
+        line-height: 1 !important;
+      }
+    }
+
+    @media (max-width: 520px){
+      .wall{
+        row-gap: 24px !important;
+      }
+
+      .char{
+        grid-template-rows: 17px auto 17px !important;
+      }
+
+      .char > .reading-stack:first-child,
+      .char > .reading-stack-lower{
+        height: 17px !important;
+      }
+
+      .char > .reading-stack:first-child{
+        transform: translateY(-1px) !important;
+      }
+
+      .char > .reading-stack-lower{
+        transform: translateY(15px) !important;
+      }
+    }
+
+
+
+    /* v68: no period in daylight text + more breathing room between wall rows */
+    .wall{
+      row-gap: 34px !important;
+    }
+
+    @media (max-width: 820px){
+      .wall{
+        row-gap: 32px !important;
+      }
+    }
+
+    @media (max-width: 520px){
+      .wall{
+        row-gap: 30px !important;
+      }
+    }
+
+
+
+    /* v69: mobile tap affordance for the hand-drawn yokan */
+    .yokan-tap-hint{
+      display: none;
+    }
+
+    @media (hover: none), (pointer: coarse){
+      .yokan-tap-hint{
+        display: block;
+        margin: 7px auto 0;
+        width: fit-content;
+        font-size: 11px;
+        line-height: 1.2;
+        letter-spacing: .015em;
+        color: #9a9a9a;
+        text-align: center;
+        user-select: none;
+      }
+
+      .yokan-flavor-right{
+        cursor: pointer;
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+
+      /* Let taps pass through the handwriting to the slice below. */
+      .yokan-route-illustration [stroke="#a3482b"]{
+        pointer-events: none;
+      }
+
+      .yokan-art-wrap.tap-cue .yokan-flavor-right{
+        animation: yokan-mobile-cue .82s ease-in-out 1;
+      }
+
+      @keyframes yokan-mobile-cue{
+        0%, 100% { transform: scale(1); }
+        45%      { transform: scale(1.028); }
+      }
+    }
 </style>
 </head>
 <body>
@@ -4007,7 +4137,7 @@
 <details class="legend-hint">
 <summary><strong>are you confused?</strong><span>press for hint</span></summary>
 <div class="legend legend-inside"><span class="nasal-n">-n</span> old -n  ·  <span class="nasal-ng">-ŋ</span> old -ŋ  ·  <span class="nasal-m">-m</span> old -m<div class="legend-note">coda color code for Middle Chinese. <a class="legend-readmore" href="#small-guide">read more</a></div></div>
-</details><button aria-pressed="false" class="bright-night-toggle" type="button"><strong>can't tell the colors?</strong> press for bright night version.</button>
+</details><button aria-pressed="false" class="bright-night-toggle" type="button"><strong>love bright colors?</strong> turn off lights here</button>
 </div></div><section class="intro">
 <p class="intro-poem-line"><em>These codas traveled far.</em></p>
 <p class="intro-poem-line">Some survived. Some melted. Some ended up in desserts.</p>
@@ -4316,7 +4446,7 @@
 <div class="yokan-quote-title">羊羹 <span lang="ja-Latn">yōkan</span></div>
 <div class="yokan-quote-gloss"><em>vegetarian lamb cake</em></div>
 <div class="yokan-quote-note">a lamb dish from which the lamb has been removed for several centuries</div>
-</blockquote><p>In one major Sino-Japanese route, old <span class="nasal-ng">-ŋ</span> gradually stopped behaving like a consonant, melting into long vowels. But later borrowing layers can preserve a different flavor. That is exactly why 羊羹 is such a nice specimen. <a class="refmark" href="#ref-ito-mester">[1]</a></p><div class="yokan-joke"><p>羊羹 (Yōkan) is not a failed rule, but the cutest reminder that different borrowing layers can send the same old coda toward different endings. 羹 is read かん in this <a class="term-link" href="https://kotobank.jp/word/%E5%94%90%E9%9F%B3-103158" rel="noopener noreferrer" target="_blank">Tō-on</a> layer, while 羊 → よう follows the long-vowel route.</p></div><div aria-label="Hover over the hand-drawn 羊羹 diagram to taste another color palette." class="yokan-art-wrap">
+</blockquote><p>In one major Sino-Japanese route, old <span class="nasal-ng">-ŋ</span> gradually stopped behaving like a consonant, melting into long vowels. But later borrowing layers can preserve a different flavor. That is exactly why 羊羹 is such a nice specimen. <a class="refmark" href="#ref-ito-mester">[1]</a></p><div class="yokan-joke"><p>羊羹 (Yōkan) is not a failed rule, but the cutest reminder that different borrowing layers can send the same old coda toward different endings. 羹 is read かん in this <a class="term-link" href="https://kotobank.jp/word/%E5%94%90%E9%9F%B3-103158" rel="noopener noreferrer" target="_blank">Tō-on</a> layer, while 羊 → よう follows the long-vowel route.</p></div><div aria-label="Hover on desktop or tap the right slice on mobile to taste another color palette." class="yokan-art-wrap">
 <svg aria-label="Hand-drawn 羊羹 borrowing routes" class="yokan-route-illustration" id="svg1" inkscape:version="1.4.3 (0d15f75, 2025-12-25)" role="img" sodipodi:docname="Drawing 2.svg" version="1.1" viewBox="104.969 580 376.121 375" xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <!--
 	Exported with Concepts: Smarter Sketching
@@ -4427,7 +4557,7 @@
 <path d="m 204.711,488.456 -0.114,0.358 -0.157,-0.395 q -0.15,-0.495 -1.482,-1.732 -1.332,-1.237 -4.23,-1.16 -0.445,0.432 0.23,1.884 0.674,1.452 2.491,2.084 1.818,0.632 2.881,0.489 1.063,-0.143 1.555,-0.567 0.492,-0.425 0.882,-1.223 0.391,-0.798 0.54,-1.755 0.149,-0.956 0.158,-2.263 0.009,-1.308 -0.408,-2.296 -0.417,-0.988 -3.272,-1.626" fill="none" id="STROKE_f2763214-ca77-46b5-9f49-fa0f79844b21" opacity="1" stroke="#a3482b" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" stroke-width="2.089"></path>
 </g>
 </svg>
-</div><p class="yokan-punchline">one dessert, two routes, both sweet</p><section class="sweet-shelf"><h4>Other sweet counterexamples</h4><div class="sweet-grid"><div class="sweet-item"><div class="sweet-word"><span class="sweet-hanzi">杏仁豆腐</span><span class="sweet-kana">あんにんどうふ</span></div><p>杏 historically ended in -ŋ, but here it enters through the later あん reading. A dessert with a later borrowing layer baked into its name. <a class="refmark" href="#ref-ito-mester">[4]</a></p></div><div class="sweet-item"><div class="sweet-word"><span class="sweet-hanzi">杏子餡</span><span class="sweet-kana">あんずあん</span></div><p>杏子 itself preserves a Tang-on-derived fruit name; add sugar and syrup, and the later layer literally becomes a sweet filling. <a class="refmark" href="#ref-ito-mester">[4]</a></p></div></div></section></section><section class="m-section"><h3>Then ㅁ walks in.</h3><div class="m-walks-in"><p>感 looks perfectly ordinary in Mandarin: gǎn.</p><p>But Korean 감 and Cantonese gam² quietly point to an older -m.</p><p>Good 音感 helps.</p></div><p class="m-followup">Mandarin merged old <span class="nasal-m">-m</span> with <span class="nasal-n">-n</span>. Korean and Cantonese kept the nasal codas apart: <strong>/m n ŋ/</strong>. That makes words like 感 especially nice little fossils. <a class="refmark" href="#ref-zee">[3]</a></p></section><section class="why-section"><h3>Why linguists care</h3><p>Each Sino-Xenic reading is a small slice of Chinese sound history, taken at a different moment of borrowing. Some preserve distinctions that later disappeared in Chinese. Historical phonologists put these slices side by side, trace the differences between them, and reconstruct earlier sound systems. <a class="refmark" href="#ref-shen">[2]</a></p></section></section><section class="sources academic-sources"><h2>References</h2><ol><li id="ref-ito-mester"><a href="https://people.ucsc.edu/~mester/papers/2015_ito_mester_sinojapanese_phonology.pdf" rel="noopener noreferrer" target="_blank">Ito, Junko, and Armin Mester. 2015. “Sino-Japanese Phonology.” In The Handbook of Japanese Phonetics and Phonology, edited by Haruo Kubozono, 289–312. Berlin/Boston: De Gruyter Mouton.</a></li><li id="ref-shen"><a href="https://www.cambridge.org/core/books/phonological-history-of-chinese/595EECB379A14AF544FB80261D889516" rel="noopener noreferrer" target="_blank">Shen, Zhongwei. 2020. A Phonological History of Chinese. Cambridge: Cambridge University Press.</a></li><li id="ref-zee"><a href="https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/chinese-hong-kong-cantonese/BE506B659CA1CCDC96570765FF35FD73" rel="noopener noreferrer" target="_blank">Zee, Eric. 1991. “Chinese (Hong Kong Cantonese).” Journal of the International Phonetic Association 21 (1): 46–48.</a></li></ol><p class="dict-shelf">Dictionaries: <a href="https://kotobank.jp/word/%E5%94%90%E9%9F%B3-103158" rel="noopener noreferrer" target="_blank">唐音</a> · <a href="https://kotobank.jp/word/%E7%BE%8A%E7%BE%B9-145584" rel="noopener noreferrer" target="_blank">羊羹</a> · <a href="https://kotobank.jp/word/%E6%9D%8F%E4%BB%81-429654" rel="noopener noreferrer" target="_blank">杏仁</a> · <a href="https://kotobank.jp/word/%E9%8A%80%E6%9D%8F-433806" rel="noopener noreferrer" target="_blank">銀杏</a> · <a href="https://kotobank.jp/word/%E7%8F%BE%E7%8A%B6-492293" rel="noopener noreferrer" target="_blank">現状</a> · <a href="https://kotobank.jp/word/%E7%8F%BE%E5%A0%B4-492294" rel="noopener noreferrer" target="_blank">現場</a></p></section><section class="closing-yokan"><div class="closing-pinyin" lang="zh-Latn-pinyin">yáng gēng</div><div class="closing-hanzi">羊羹</div><div class="closing-mc">Middle Chinese: yang · kaeng</div><div class="closing-codas">-ŋ　·　-ŋ</div></section><section class="final-punchline">如果后学的是唐音，那ai写的code是不是有糖味儿？</section><p class="cantonese-disclaimer">disclaimer: i don't know much about cantonese (yet). comments welcomed!</p><footer class="site-footer">
+</div><p class="yokan-tap-hint">tap for another flavor</p><p class="yokan-punchline">one dessert, two routes, and sweet together</p><section class="sweet-shelf"><h4>Other sweet counterexamples</h4><div class="sweet-grid"><div class="sweet-item"><div class="sweet-word"><span class="sweet-hanzi">杏仁豆腐</span><span class="sweet-kana">あんにんどうふ</span></div><p>杏 historically ended in -ŋ, but here it enters through the later あん reading. A dessert with a later borrowing layer baked into its name. <a class="refmark" href="#ref-ito-mester">[4]</a></p></div><div class="sweet-item"><div class="sweet-word"><span class="sweet-hanzi">杏子餡</span><span class="sweet-kana">あんずあん</span></div><p>杏子 itself preserves a Tang-on-derived fruit name; add sugar and syrup, and the later layer literally becomes a sweet filling. <a class="refmark" href="#ref-ito-mester">[4]</a></p></div></div></section></section><section class="m-section"><h3>Then ㅁ walks in.</h3><div class="m-walks-in"><p>感 looks perfectly ordinary in Mandarin: gǎn.</p><p>But Korean 감 and Cantonese gam² quietly point to an older -m.</p><p>Good 音感 helps.</p></div><p class="m-followup">Mandarin merged old <span class="nasal-m">-m</span> with <span class="nasal-n">-n</span>. Korean and Cantonese kept the nasal codas apart: <strong>/m n ŋ/</strong>. That makes words like 感 especially nice little fossils. <a class="refmark" href="#ref-zee">[3]</a></p></section><section class="why-section"><h3>Why linguists care</h3><p>Each Sino-Xenic reading is a small slice of Chinese sound history, taken at a different moment of borrowing. Some preserve distinctions that later disappeared in Chinese. Historical phonologists put these slices side by side, trace the differences between them, and reconstruct earlier sound systems. <a class="refmark" href="#ref-shen">[2]</a></p></section></section><section class="sources academic-sources"><h2>References</h2><ol><li id="ref-ito-mester"><a href="https://people.ucsc.edu/~mester/papers/2015_ito_mester_sinojapanese_phonology.pdf" rel="noopener noreferrer" target="_blank">Ito, Junko, and Armin Mester. 2015. “Sino-Japanese Phonology.” In The Handbook of Japanese Phonetics and Phonology, edited by Haruo Kubozono, 289–312. Berlin/Boston: De Gruyter Mouton.</a></li><li id="ref-shen"><a href="https://www.cambridge.org/core/books/phonological-history-of-chinese/595EECB379A14AF544FB80261D889516" rel="noopener noreferrer" target="_blank">Shen, Zhongwei. 2020. A Phonological History of Chinese. Cambridge: Cambridge University Press.</a></li><li id="ref-zee"><a href="https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/chinese-hong-kong-cantonese/BE506B659CA1CCDC96570765FF35FD73" rel="noopener noreferrer" target="_blank">Zee, Eric. 1991. “Chinese (Hong Kong Cantonese).” Journal of the International Phonetic Association 21 (1): 46–48.</a></li></ol><p class="dict-shelf">Dictionaries: <a href="https://kotobank.jp/word/%E5%94%90%E9%9F%B3-103158" rel="noopener noreferrer" target="_blank">唐音</a> · <a href="https://kotobank.jp/word/%E7%BE%8A%E7%BE%B9-145584" rel="noopener noreferrer" target="_blank">羊羹</a> · <a href="https://kotobank.jp/word/%E6%9D%8F%E4%BB%81-429654" rel="noopener noreferrer" target="_blank">杏仁</a> · <a href="https://kotobank.jp/word/%E9%8A%80%E6%9D%8F-433806" rel="noopener noreferrer" target="_blank">銀杏</a> · <a href="https://kotobank.jp/word/%E7%8F%BE%E7%8A%B6-492293" rel="noopener noreferrer" target="_blank">現状</a> · <a href="https://kotobank.jp/word/%E7%8F%BE%E5%A0%B4-492294" rel="noopener noreferrer" target="_blank">現場</a></p></section><section class="closing-yokan"><div class="closing-pinyin" lang="zh-Latn-pinyin">yáng gēng</div><div class="closing-hanzi">羊羹</div><div class="closing-mc">Middle Chinese: yang · kaeng</div><div class="closing-codas">-ŋ　·　-ŋ</div></section><section class="final-punchline">如果后学的是唐音，那ai写的code是不是有糖味儿？</section><p class="cantonese-disclaimer">disclaimer: i don't know much about cantonese (yet). comments welcomed!</p><footer class="site-footer">
 <div>Made by LemmaPro @Pilemma2026</div>
 <a href="https://www.pilemma.org" rel="noopener noreferrer">www.pilemma.org</a>
 </footer></div></main>
@@ -4586,24 +4716,13 @@
 <script id="yokan-flavor-hover">
 (() => {
   const art = document.querySelector('.yokan-art-wrap');
-  if (!art) return;
+  const rightSlice = art?.querySelector('.yokan-flavor-right');
+  if (!art || !rightSlice) return;
 
-  // Right-hand yokan changes flavor; left stays stable.
-  // These are visually based on Kaishindo's actual product photos:
-  // 白煉, 抹茶, 藍莓.
   const palettes = [
-    {
-      right: '#e3b36f',
-      rightScript: '#805a3d'
-    }, // 白煉 — warm pale golden bean
-    {
-      right: '#5f653c',
-      rightScript: '#c5c89a'
-    }, // 抹茶 — olive matcha
-    {
-      right: '#a56f70',
-      rightScript: '#ead0cb'
-    }  // 藍莓 — muted mauve
+    { right: '#e3b36f', rightScript: '#805a3d' }, // 白煉
+    { right: '#5f653c', rightScript: '#c5c89a' }, // 抹茶
+    { right: '#a56f70', rightScript: '#ead0cb' }  // 藍莓
   ];
 
   const original = {
@@ -4611,6 +4730,7 @@
     rightScript: '#a3482b'
   };
 
+  const mobileLike = window.matchMedia('(hover: none), (pointer: coarse)');
   let index = -1;
 
   const apply = (p) => {
@@ -4618,24 +4738,51 @@
     art.style.setProperty('--yokan-right-script', p.rightScript);
   };
 
+  // Desktop keeps the original hover behavior.
   art.addEventListener('pointerenter', (event) => {
-    if (event.pointerType === 'touch') return;
+    if (mobileLike.matches || event.pointerType === 'touch') return;
     index = (index + 1) % palettes.length;
     apply(palettes[index]);
   });
 
   art.addEventListener('pointerleave', (event) => {
-    if (event.pointerType === 'touch') return;
+    if (mobileLike.matches || event.pointerType === 'touch') return;
     apply(original);
   });
+
+  // Mobile: tap only the right-hand slice; each tap advances one flavor.
+  rightSlice.addEventListener('click', (event) => {
+    if (!mobileLike.matches && event.pointerType !== 'touch') return;
+    event.preventDefault();
+
+    index += 1;
+    if (index >= palettes.length) {
+      index = -1;
+      apply(original);
+    } else {
+      apply(palettes[index]);
+    }
+  });
+
+  // Give the tappable slice one gentle cue when it first scrolls into view.
+  if (mobileLike.matches && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (!entry?.isIntersecting) return;
+      art.classList.add('tap-cue');
+      observer.disconnect();
+    }, { threshold: 0.65 });
+
+    observer.observe(art);
+  }
 })();
 </script><script id="bright-night-script">
 (() => {
   const button = document.querySelector('.bright-night-toggle');
   if (!button) return;
 
-  const normalHTML = "<strong>can't tell the colors?</strong> press for bright night version.";
-  const nightText = "back to daylight version.";
+  const normalHTML = "<strong>love bright colors?</strong> turn off lights here";
+  const nightText = "back to daylight version";
 
   button.addEventListener('click', () => {
     const active = document.body.classList.toggle('bright-night');
